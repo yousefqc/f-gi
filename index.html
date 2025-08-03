@@ -1,171 +1,264 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <title>تسجيل بطولة 1320</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap');
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    body {
-      font-family: 'Cairo', sans-serif;
-      overflow-x: hidden;
-      color: white;
-    }
-    /* الخلفية المغبشة */
-    .bg {
-      background-image: url('https://www.raed.net/img?id=1376733');
-      background-size: cover;
-      background-position: center;
-      filter: blur(10px);
-      transform: scale(1.1);
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      z-index: -2;
-      animation: zoomSlow 20s infinite alternate;
-    }
-    @keyframes zoomSlow {
-      from { transform: scale(1.1); }
-      to { transform: scale(1.2); }
-    }
-    .overlay {
-      background: rgba(0,0,0,0.7);
-      min-height: 100vh;
-      padding: 30px;
-      z-index: 1;
-      position: relative;
-    }
-    .logo {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .logo img {
-      max-width: 180px;
-    }
-    .car-img {
-      display: block;
-      margin: 20px auto;
-      max-width: 500px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00ffe7;
-    }
-    .countdown {
-      text-align: center;
-      font-size: 28px;
-      margin: 30px 0;
-      color: #00ffe7;
-    }
-    .form-box {
-      max-width: 600px;
-      margin: auto;
-      background: #111;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 25px #00ffe7;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    input[type="text"], input[type="checkbox"] {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: #222;
-      color: white;
-      margin-bottom: 15px;
-    }
-    .checkbox {
-      display: flex;
-      align-items: center;
-    }
-    .checkbox input {
-      width: auto;
-      margin-left: 10px;
-    }
-    .submit-btn {
-      width: 100%;
-      padding: 15px;
-      background: #00ffe7;
-      border: none;
-      color: black;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    .submit-btn:hover {
-      background: #00cbbf;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إختبرهم - لعبة الأسئلة التفاعلية</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <div class="bg"></div>
-
-  <div class="overlay">
-    <!-- اللوقو -->
-    <div class="logo">
-      <img src="https://www.raed.net/img?id=1376743" alt="لوقو البطولة" />
+    <!-- الصفحة الرئيسية -->
+    <div id="home-page" class="page active">
+        <header class="header">
+            <div class="logo-container">
+                <img src="logo.png" alt="إختبرهم" class="main-logo">
+            </div>
+            <h1 class="main-title">مرحباً بك في لعبة إختبرهم</h1>
+            <p class="subtitle">اختبر معلوماتك مع أصدقائك في تحدي شيق ومثير</p>
+            <button class="start-btn" onclick="showCategorySelection()">ابدأ اللعبة</button>
+        </header>
     </div>
 
-    <!-- صورة السيارة -->
-    <img src="https://www.raed.net/img?id=1376735" alt="سيارة البطولة" class="car-img" />
+    <!-- صفحة اختيار الفئات -->
+    <div id="category-page" class="page">
+        <div class="page-header">
+            <img src="logo.png" alt="إختبرهم" class="page-logo">
+            <h2 class="page-title">اختر 6 فئات للعبة</h2>
+            <p class="selected-count">تم اختيار <span id="selected-count">0</span> من 6 فئات</p>
+        </div>
 
-    <!-- عبارة البطولة -->
-<div class="countdown" id="countdown">بطولة باجر ساعة 10.30 مساءً</div>
+        <div class="categories-grid">
+            <div class="category-card" data-category="capital-governorate">
+    <img src="https://www.raed.net/img?id=1394455" alt="محافظة العاصمة" class="category-image">
+    <h3 class="category-title">محافظة العاصمة</h3>
+    <p class="category-desc">اختبر معلوماتك عن محافظة العاصمة</p>
+</div>
+<div class="category-card" data-category="hawalli-governorate">
+    <img src="https://www.raed.net/img?id=1394455" alt="محافظة حولي" class="category-image">
+    <h3 class="category-title">محافظة حولي</h3>
+    <p class="category-desc">اختبر معلوماتك عن محافظة حولي</p>
+</div>
+<div class="category-card" data-category="farwaniya-governorate">
+    <img src="https://www.raed.net/img?id=1394455" alt="محافظة الفروانية" class="category-image">
+    <h3 class="category-title">محافظة الفروانية</h3>
+    <p class="category-desc">اختبر معلوماتك عن محافظة الفروانية</p>
+</div>
+<div class="category-card" data-category="ahmadi-governorate">
+    <img src="https://www.raed.net/img?id=1394455" alt="محافظة الأحمدي" class="category-image">
+    <h3 class="category-title">محافظة الأحمدي</h3>
+    <p class="category-desc">اختبر معلوماتك عن محافظة الأحمدي</p>
+</div>
+<div class="category-card" data-category="jahra-governorate">
+    <img src="https://www.raed.net/img?id=1394455" alt="محافظة الجهراء" class="category-image">
+    <h3 class="category-title">محافظة الجهراء</h3>
+    <p class="category-desc">اختبر معلوماتك عن محافظة الجهراء</p>
+</div>
+<div class="category-card" data-category="mubarak-al-kabeer-governorate">
+    <img src="https://www.raed.net/img?id=1394455" alt="محافظة مبارك الكبير" class="category-image">
+    <h3 class="category-title">محافظة مبارك الكبير</h3>
+    <p class="category-desc">اختبر معلوماتك عن محافظة مبارك الكبير</p>
+</div>
+<div class="category-card" data-category="girls-stuff">
+    <img src="https://www.raed.net/img?id=1394455" alt="بنات وبس" class="category-image">
+    <h3 class="category-title">بنات وبس</h3>
+    <p class="category-desc">كل ما يخص عالم البنات من مكياج وموضة</p>
+</div>
+<div class="category-card" data-category="kuwaiti-restaurants">
+    <img src="https://www.raed.net/img?id=1394455" alt="مطاعم الكويت" class="category-image">
+    <h3 class="category-title">مطاعم الكويت</h3>
+    <p class="category-desc">أشهر المطاعم والأكلات الكويتية</p>
+</div>
+<div class="category-card" data-category="kuwaiti-football">
+    <img src="https://www.raed.net/img?id=1394455" alt="كورة كويتية" class="category-image">
+    <h3 class="category-title">كورة كويتية</h3>
+    <p class="category-desc">معلومات عن الأندية واللاعبين الكويتيين</p>
+</div>
+<div class="category-card" data-category="kuwaiti-history">
+    <img src="https://www.raed.net/img?id=1394455" alt="تاريخ الكويت" class="category-image">
+    <h3 class="category-title">تاريخ الكويت</h3>
+    <p class="category-desc">أحداث وشخصيات تاريخية كويتية</p>
+</div>
+<div class="category-card" data-category="world-countries">
+    <img src="https://www.raed.net/img?id=1394455" alt="دول العالم" class="category-image">
+    <h3 class="category-title">دول العالم</h3>
+    <p class="category-desc">أعلام وعواصم ومعلومات عن دول العالم</p>
+</div>
+<div class="category-card" data-category="general-knowledge">
+    <img src="https://www.raed.net/img?id=1394455" alt="معلومات عامة" class="category-image">
+    <h3 class="category-title">معلومات عامة</h3>
+    <p class="category-desc">مفردات ومعاني وكلمات متنوعة</p>
+</div>
+<div class="category-card" data-category="history">
+    <img src="https://www.raed.net/img?id=1394455" alt="التاريخ" class="category-image">
+    <h3 class="category-title">التاريخ</h3>
+    <p class="category-desc">أحداث تاريخية ومعلومات عن الماضي</p>
+</div>
+<div class="category-card" data-category="sports">
+    <img src="https://www.raed.net/img?id=1394455" alt="الرياضة" class="category-image">
+    <h3 class="category-title">الرياضة</h3>
+    <p class="category-desc">معلومات رياضية ولاعبين وبطولات</p>
+</div>
+<div class="category-card" data-category="science">
+    <img src="https://www.raed.net/img?id=1394455" alt="العلوم" class="category-image">
+    <h3 class="category-title">العلوم</h3>
+    <p class="category-desc">معلومات علمية واكتشافات</p>
+</div>
+<div class="category-card" data-category="tourism">
+    <img src="https://www.raed.net/img?id=1394455" alt="السياحة العالمية" class="category-image">
+    <h3 class="category-title">السياحة العالمية</h3>
+    <p class="category-desc">أشهر الوجهات السياحية حول العالم</p>
+            </div>
+        </div>
 
+        <div class="action-buttons">
+            <button class="continue-btn" onclick="showGameSetup()" disabled>متابعة</button>
+            <button class="back-btn" onclick="showHomePage()">العودة</button>
+        </div>
+    </div>
 
-    <!-- النموذج -->
-    <form class="form-box" id="regForm">
-      <label>اليوزر دسكورد</label>
-      <input type="text" name="discordUser" required />
+    <!-- صفحة إعداد اللعبة -->
+    <div id="setup-page" class="page">
+        <div class="page-header">
+            <img src="logo.png" alt="إختبرهم" class="page-logo">
+            <h2 class="page-title">إعداد اللعبة</h2>
+        </div>
 
-      <label>الاسم بل لعبه</label>
-      <input type="text" name="gameName" required />
+        <div class="setup-form">
+            <div class="form-group">
+                <label for="game-name">اسم اللعبة</label>
+                <input type="text" id="game-name" placeholder="أدخل اسم اللعبة">
+            </div>
 
-      <label>السيارة المشاركة</label>
-      <input type="text" name="car" required />
+            <div class="teams-container">
+                <div class="team-setup">
+                    <h3>الفريق الأول</h3>
+                    <div class="form-group">
+                        <label for="team1-name">اسم الفريق</label>
+                        <input type="text" id="team1-name" placeholder="اسم الفريق الأول">
+                    </div>
+                    <div class="form-group">
+                        <label for="team1-members">عدد الأعضاء</label>
+                        <input type="number" id="team1-members" min="1" max="10" value="1">
+                    </div>
+                </div>
 
-      <div class="checkbox">
-        <input type="checkbox" name="agree" required />
-        <label>أوافق على <a href="#" style="color:#00ffe7;">الشروط والأحكام</a></label>
-      </div>
+                <div class="vs-divider">VS</div>
 
-      <button class="submit-btn" type="submit">تسجيل</button>
-    </form>
-  </div>
+                <div class="team-setup">
+                    <h3>الفريق الثاني</h3>
+                    <div class="form-group">
+                        <label for="team2-name">اسم الفريق</label>
+                        <input type="text" id="team2-name" placeholder="اسم الفريق الثاني">
+                    </div>
+                    <div class="form-group">
+                        <label for="team2-members">عدد الأعضاء</label>
+                        <input type="number" id="team2-members" min="1" max="10" value="1">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <script>
-    // ارسال التسجيل إلى Webhook ديسكورد + تنبيه المستخدم
-    const form = document.getElementById("regForm");
+        <div class="action-buttons">
+            <button class="start-game-btn" onclick="startGame()">بدء اللعبة</button>
+            <button class="back-btn" onclick="showCategorySelection()">العودة</button>
+        </div>
+    </div>
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+    <!-- صفحة لوحة اللعب -->
+    <div id="game-page" class="page">
+        <div class="game-header">
+            <img src="logo.png" alt="إختبرهم" class="game-logo">
+            <div class="game-info">
+                <h2 id="current-game-name">اسم اللعبة</h2>
+                <div class="teams-score">
+                    <div class="team-score">
+                        <span id="team1-display">الفريق الأول</span>
+                        <span id="team1-score">0</span>
+                    </div>
+                    <div class="team-score">
+                        <span id="team2-display">الفريق الثاني</span>
+                        <span id="team2-score">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      const discordUser = form.querySelector('input[name="discordUser"]').value;
-      const gameName = form.querySelector('input[name="gameName"]').value;
-      const car = form.querySelector('input[name="car"]').value;
+        <div class="game-board">
+            <div id="categories-board" class="categories-board">
+                <!-- سيتم إنشاء الفئات ديناميكياً -->
+            </div>
+        </div>
 
-      const message = {
-        content: `📥 تسجيل جديد في البطولة:\n🔸 اليوزر دسكورد: **${discordUser}**\n🔸 الاسم بل لعبه: **${gameName}**\n🚗 السيارة: **${car}**`
-      };
+        <div class="game-controls">
+            <button class="new-game-btn" onclick="showHomePage()">لعبة جديدة</button>
+            <button class="reset-btn" onclick="resetGame()">إعادة تعيين النقاط</button>
+        </div>
+    </div>
 
-      fetch("https://discord.com/api/webhooks/1396183300556591104/ZykvnvmMJb2UuUB0DtNQui4ckyPYC6IASybXnkB8rJ-1aYGeDZx7RuZKr2pESg9Pve66", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(message)
-      })
-      .then(() => {
-        alert("✅ تم تسجيلك! شكراً لك.");
-      })
-      .catch(() => {
-        alert("🚨 حدث خطأ حاول مرة ثانية.");
-      });
-    });
-  </script>
+    <!-- نافذة السؤال -->
+    <div id="question-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="question-category">الفئة</h3>
+                <span id="question-points">200</span>
+                <button class="close-btn" onclick="closeQuestion()">&times;</button>
+                <div class="timer" id="question-timer">01:00</div>
+            </div>
+            <div class="modal-body">
+                <p id="question-text">نص السؤال سيظهر هنا</p>
+                <div class="question-content-wrapper">
+                    <div class="question-image-container">
+                        <img src="" alt="صورة الفئة" class="question-image" id="question-category-image">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="show-answer-btn" onclick="showAnswer()">إظهار الإجابة</button>
+            </div>
+        </div>
+    </div>
 
+    <!-- نافذة اختيار الفائز -->
+    <div id="winner-selection-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="page-title">منو فاز؟</h3>
+            </div>
+            <div class="modal-body">
+                <div class="winner-selection-buttons">
+                    <button class="team-winner-btn" onclick="selectWinner(1)" id="team1-winner-btn">الفريق الأول</button>
+                    <button class="team-winner-btn" onclick="selectWinner(2)" id="team2-winner-btn">الفريق الثاني</button>
+                    <button class="no-winner-btn" onclick="selectWinner(0)">ولا أحد</button>
+                </div>
+                <div id="answer-display" class="answer-display" style="display: none;">
+                    <h4>الإجابة الصحيحة:</h4>
+                    <p id="correct-answer-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة الفائز -->
+    <div id="winner-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="page-title">انتهت اللعبة!</h3>
+                <button class="close-btn" onclick="closeWinnerModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="winner-display">
+                    <h3 id="winner-text"></h3>
+                    <p id="final-scores"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="new-game-btn" onclick="showHomePage()">لعبة جديدة</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
